@@ -1,7 +1,7 @@
 
 #### Installation For Production
 
-To generate a production build of Ginger Health web, run the following commands:
+To generate a production build of Test web, run the following commands:
 
 ```
 npm install
