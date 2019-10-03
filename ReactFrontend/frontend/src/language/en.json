@@ -1,0 +1,21 @@
+{
+    "header.title": "Ginger Health",
+    "login.header.name": "Ginger Health",
+    "login.btn.title": "Login",
+    "login.phone.title": "Use phone number instead",
+    "login.email.title": "Use email instead",
+    "login.forgot.title": "Reset password",
+    "login.account.quiz": "No account?",
+    "login.account.create": "Create one!",
+    "login.tos.pp": "By tapping Login, I agree with Ginger Health's",
+    "login.tos.title": "Terms of Service",
+    "login.and.label": "and",
+    "login.pp.title": "Privacy Policy",
+    "signup.account.login": "Login",
+    "forgot.btn.title": "Reset",
+    "main.tab.title1": "Groups",
+    "main.tab.title2": "Guides",
+    "main.tab.title3": "Chats",
+    "main.tab.title4": "Profile",
+    "main.tab.title5": "Logout"
+}
