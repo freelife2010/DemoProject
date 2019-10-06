@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { Drawer, Layout, Table } from 'antd';
+import { Drawer, Layout, Table, Icon, Button, Tooltip, Input, Tabs } from 'antd';
 import { connectAuth, connectContacts, contactsActionCreators } from 'core';
 import { promisify } from 'utilities';
 import DefaultHeader from 'containers/DefaultLayout/DefaultHeader';
@@ -58,6 +58,8 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
   },
 ];
+const tags = ['HOST', 'ADMIN', 'TAG 3'];
+const { TabPane } = Tabs;
 class ContactsContainer extends PureComponent {
   constructor(props) {
     super(props);
@@ -87,7 +89,6 @@ class ContactsContainer extends PureComponent {
   render () {
     const { menuId } = this.props.history.location.state;
     const { user, contactList } = this.props;
-    console.log('contactList', contactList);
     return (
       <div className="contracts_wrapper">
         <DefaultHeader Type="home" menuId={menuId} />
@@ -102,12 +103,31 @@ class ContactsContainer extends PureComponent {
             />
           </Content>
           <Drawer
-              title={user.name}
-              placement="right"
-              closable={false}
-              onClose={this.onClose}
-              visible={this.state.visible}
-            >
+            className="side_panel"
+            placement="right"
+            closable={false}
+            onClose={this.onClose}
+            visible={this.state.visible}
+            width={351}
+          >
+            <div className="profile_wrapper">
+              <div className="avatar">AT</div>
+              <p className="name">{user.name}</p>
+              <div className="tag_list">
+                {
+                  tags.map((tag, index) => (
+                    <div className="tag_item" key={index}>
+                      {tag}
+                      <Icon type="close" />
+                    </div>
+                  ))
+                }
+                <div className="add_btn">
+                  <Tooltip placement="bottomRight" title={<Input placeholder="Type tag" />} trigger="click">
+                    <Button><Icon type="plus" /></Button>
+                  </Tooltip>
+                </div>
+              </div>
               <div className="contacts_list">
                 {
                   contactList && contactList.map((contact, index) => (
@@ -115,7 +135,46 @@ class ContactsContainer extends PureComponent {
                   ))
                 }
               </div>
-            </Drawer>
+            </div>
+            <div className="main_info_wrapper">
+              <Tabs type="card">
+                <TabPane tab="Main Info" key="1">
+                  <div>
+                    <div>
+                      <p className="title">PHONE</p>
+                      <p className="description">+1 073 2714 007</p>
+                    </div>
+                    <div>
+                      <p className="title">IP ADDRESS</p>
+                      <p className="description">123123123432322</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <p className="title">COUNTRY</p>
+                      <p className="description">USA</p>
+                    </div>
+                    <div>
+                      <p className="title">TIME ON WEBINAR</p>
+                      <p className="description">1 hr</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <p className="title">LTV</p>
+                      <p className="description">$50</p>
+                    </div>
+                  </div>
+                </TabPane>
+                <TabPane tab="History" key="2">
+                  <p>History</p>
+                </TabPane>
+                <TabPane tab="Messages 2" key="3">
+                  <p>Messages 2</p>
+                </TabPane>
+              </Tabs>
+            </div>
+          </Drawer>
         </Layout>
       </div>
     );
